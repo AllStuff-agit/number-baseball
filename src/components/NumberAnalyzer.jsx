@@ -137,7 +137,7 @@ function NumberAnalyzer({ config }) {
   }
 
   return (
-    <div className="mb-6 max-h-[60vh] overflow-y-auto pr-2">
+    <div className="mb-3 max-h-[60vh] overflow-y-auto pr-2">
       <div className="flex items-center justify-between mb-3">
         <h3 className="text-sm font-semibold text-gray-700 dark:text-gray-300 transition-colors duration-300">
           숫자 메모
