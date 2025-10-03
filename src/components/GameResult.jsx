@@ -85,7 +85,7 @@ function GameResult({ isWon, attempts, answer, onRestart, onGoToSettings }) {
                        border-2 border-gray-200 dark:border-gray-600 shadow-md hover:shadow-lg backdrop-blur-sm tracking-wide"
             aria-label="새 게임 시작하기"
           >
-            새 게임 🎮
+            🆕 새 게임
           </button>
         </div>
       </div>

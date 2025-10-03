@@ -61,7 +61,7 @@ function GameBoard({ config, onGoToSettings }) {
                            shadow-md hover:shadow-lg backdrop-blur-sm tracking-tight"
                 aria-label="다시 시작하기"
               >
-                🔄 새 게임
+                🆕 새 게임
               </button>
             </div>
 
