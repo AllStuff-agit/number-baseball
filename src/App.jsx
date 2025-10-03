@@ -35,12 +35,15 @@ function App() {
           {/* 다크 모드 토글 버튼 */}
           <button
             onClick={toggleTheme}
-            className="absolute right-0 top-0 p-3 rounded-lg bg-white dark:bg-gray-700
+            className="absolute right-0 top-0 px-4 py-2 rounded-lg bg-white dark:bg-gray-700
                        text-gray-700 dark:text-gray-200 shadow-md hover:shadow-lg
-                       transition-all duration-300 hover:scale-105"
+                       transition-all duration-300 hover:scale-105 flex items-center gap-2"
             aria-label={isDarkMode ? '라이트 모드로 전환' : '다크 모드로 전환'}
           >
             {isDarkMode ? '🌞' : '🌙'}
+            <span className="text-sm font-semibold">
+              {isDarkMode ? 'Light Mode' : 'Dark Mode'}
+            </span>
           </button>
 
           <h1 className="text-4xl font-bold text-indigo-900 dark:text-indigo-300 mb-2 transition-colors duration-300">
