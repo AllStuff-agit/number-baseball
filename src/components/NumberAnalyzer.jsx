@@ -131,7 +131,7 @@ function NumberAnalyzer({ config }) {
   }
 
   return (
-    <div className="mb-6">
+    <div className="mb-6 max-h-[60vh] overflow-y-auto pr-2">
       <div className="flex items-center justify-between mb-3">
         <h3 className="text-sm font-semibold text-gray-700 dark:text-gray-300 transition-colors duration-300">
           숫자 메모
@@ -175,11 +175,9 @@ function NumberAnalyzer({ config }) {
               </button>
 
               {/* 상태 레이블 */}
-              {label && (
-                <div className="mt-1 text-[10px] text-center text-gray-600 dark:text-gray-400 transition-colors duration-300 leading-tight">
-                  {label}
-                </div>
-              )}
+              <div className="mt-1 text-[10px] text-center text-gray-600 dark:text-gray-400 transition-colors duration-300 leading-tight h-6 flex items-center justify-center">
+                {label}
+              </div>
             </div>
           )
         })}
