@@ -35,35 +35,37 @@ function GuessHistory({ attempts }) {
             <div
               key={attempt.attemptNumber}
               className="bg-gradient-to-br from-white to-gray-50 dark:from-gray-700 dark:to-gray-800
-                         border-2 border-gray-200 dark:border-gray-600 rounded-xl p-4
+                         border-2 border-gray-200 dark:border-gray-600 rounded-xl p-3
                          hover:border-indigo-300 dark:hover:border-indigo-500 hover:shadow-lg
                          transition-all duration-300 animate-slide-up backdrop-blur-sm"
               style={{ animationDelay: `${attempt.attemptNumber * 50}ms` }}
             >
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between gap-2">
                 {/* 시도 번호 & 추측 값 */}
-                <div className="flex items-center gap-3">
-                  <span className="flex items-center justify-center w-9 h-9
+                <div className="flex items-center gap-2 min-w-0 flex-shrink">
+                  <span className="flex items-center justify-center w-8 h-8 flex-shrink-0
                                    bg-gradient-to-br from-indigo-500 to-blue-500 dark:from-indigo-600 dark:to-blue-600
                                    text-white rounded-xl shadow-md
-                                   text-sm font-black transition-colors duration-300">
+                                   text-xs font-black transition-colors duration-300">
                     {attempt.attemptNumber}
                   </span>
-                  <span className="font-mono text-xl font-black text-gray-800 dark:text-gray-100 transition-colors duration-300 tracking-wider">
+                  <span className={`font-mono font-black text-gray-800 dark:text-gray-100 transition-colors duration-300 tracking-wider min-w-0 ${
+                    attempt.guess.length >= 6 ? 'text-base' : attempt.guess.length >= 5 ? 'text-lg' : 'text-xl'
+                  }`}>
                     {attempt.guess}
                   </span>
                 </div>
 
                 {/* 결과 표시 */}
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-1.5 flex-shrink-0">
                   {/* 스트라이크 */}
                   {strike > 0 && (
-                    <div className="flex items-center gap-1.5 px-3 py-1.5
+                    <div className="flex items-center gap-1 px-2 py-1
                                     bg-gradient-to-br from-green-100 to-emerald-100 dark:from-green-900/40 dark:to-emerald-900/40
                                     text-green-700 dark:text-green-400 rounded-lg transition-colors duration-300
                                     border border-green-200 dark:border-green-800 shadow-sm">
-                      <span className="text-base">⚾</span>
-                      <span className="text-sm font-black">
+                      <span className="text-sm">⚾</span>
+                      <span className="text-xs font-black">
                         {strike}S
                       </span>
                     </div>
@@ -71,12 +73,12 @@ function GuessHistory({ attempts }) {
 
                   {/* 볼 */}
                   {ball > 0 && (
-                    <div className="flex items-center gap-1.5 px-3 py-1.5
+                    <div className="flex items-center gap-1 px-2 py-1
                                     bg-gradient-to-br from-orange-100 to-amber-100 dark:from-orange-900/40 dark:to-amber-900/40
                                     text-orange-700 dark:text-orange-400 rounded-lg transition-colors duration-300
                                     border border-orange-200 dark:border-orange-800 shadow-sm">
-                      <span className="text-base">⚾</span>
-                      <span className="text-sm font-black">
+                      <span className="text-sm">⚾</span>
+                      <span className="text-xs font-black">
                         {ball}B
                       </span>
                     </div>
@@ -84,12 +86,12 @@ function GuessHistory({ attempts }) {
 
                   {/* 낫싱 */}
                   {isNothing && (
-                    <div className="flex items-center gap-1.5 px-3 py-1.5
+                    <div className="flex items-center gap-1 px-2 py-1
                                     bg-gradient-to-br from-gray-100 to-slate-100 dark:from-gray-600 dark:to-slate-600
                                     text-gray-600 dark:text-gray-300 rounded-lg transition-colors duration-300
                                     border border-gray-200 dark:border-gray-500 shadow-sm">
-                      <span className="text-base">⚾</span>
-                      <span className="text-sm font-black">
+                      <span className="text-sm">⚾</span>
+                      <span className="text-xs font-black">
                         OUT
                       </span>
                     </div>

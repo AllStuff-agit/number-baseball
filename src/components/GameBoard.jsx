@@ -41,7 +41,7 @@ function GameBoard({ config, onGoToSettings }) {
       {/* 데스크톱: 3:2 가로 배치, 모바일: 세로 배치 */}
       <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 lg:items-start">
         {/* 왼쪽: 추측 기록 (3/5 = 60%) */}
-        <div className="lg:col-span-3 bg-white/80 dark:bg-gray-800/80 backdrop-blur-md rounded-2xl shadow-xl shadow-gray-200/50 dark:shadow-gray-950/50 p-6 sm:p-8 border border-gray-200/50 dark:border-gray-700/50 transition-colors duration-300">
+        <div className="lg:col-span-3 bg-white/80 dark:bg-gray-800/80 backdrop-blur-md rounded-2xl shadow-xl shadow-gray-200/50 dark:shadow-gray-950/50 p-6 sm:p-8 border border-gray-200/50 dark:border-gray-700/50 transition-colors duration-300 max-h-[calc(100vh-12rem)] overflow-y-auto">
           <GuessHistory attempts={gameState.attempts} />
         </div>
 
@@ -101,7 +101,7 @@ function GameBoard({ config, onGoToSettings }) {
 
           {/* 숫자 메모 */}
           <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-md rounded-2xl shadow-xl shadow-gray-200/50 dark:shadow-gray-950/50 p-6 border border-gray-200/50 dark:border-gray-700/50 transition-colors duration-300">
-            <NumberAnalyzer config={config} />
+            <NumberAnalyzer key={gameState.secret} config={config} />
           </div>
         </div>
       </div>
