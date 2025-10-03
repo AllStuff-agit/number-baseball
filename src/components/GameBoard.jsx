@@ -2,6 +2,7 @@ import { useState } from 'react'
 import GuessInput from './GuessInput'
 import GuessHistory from './GuessHistory'
 import GameResult from './GameResult'
+import NumberAnalyzer from './NumberAnalyzer'
 import { initializeGame, makeGuess } from '../utils/gameLogic'
 
 /**
@@ -75,14 +76,10 @@ function GameBoard({ config, onGoToSettings }) {
             />
           </div>
 
-          {/* 힌트 메시지 */}
-          {gameState.attempts.length > 0 && !gameState.isFinished && (
-            <div className="bg-yellow-50 dark:bg-yellow-900/30 border-2 border-yellow-200 dark:border-yellow-700 rounded-lg p-4 text-center transition-colors duration-300">
-              <p className="text-sm text-yellow-800 dark:text-yellow-200 transition-colors duration-300">
-                💡 힌트: 최근 결과를 바탕으로 숫자를 조합해보세요!
-              </p>
-            </div>
-          )}
+          {/* 숫자 메모 */}
+          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 transition-colors duration-300">
+            <NumberAnalyzer config={config} />
+          </div>
         </div>
       </div>
 
