@@ -31,6 +31,12 @@ function NumberAnalyzer({ config }) {
   const handleDigitClick = (digit) => {
     const currentState = numberStates[digit]
 
+    // 가능/확정 상태이고 이미 선택된 숫자가 아니면 위치 선택 UI만 표시
+    if ((currentState.status === 'possible' || currentState.status === 'confirmed') && selectedDigit !== digit) {
+      setSelectedDigit(digit)
+      return
+    }
+
     // 상태 순환: unknown → excluded → possible → confirmed → unknown
     let newStatus
     switch (currentState.status) {
@@ -152,7 +158,7 @@ function NumberAnalyzer({ config }) {
       </div>
 
       {/* 숫자 그리드 */}
-      <div className="grid grid-cols-10 gap-2 mb-4">
+      <div className="grid grid-cols-10 gap-2 mb-4 px-2">
         {Array.from({ length: 10 }, (_, i) => i).map((digit) => {
           const label = getStatusLabel(digit)
           const isSelected = selectedDigit === digit
