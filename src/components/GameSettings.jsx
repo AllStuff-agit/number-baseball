@@ -49,13 +49,13 @@ function GameSettings({ onStartGame }) {
         <label className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-3 transition-colors duration-300 tracking-tight">
           자릿수 선택
         </label>
-        <div className="grid grid-cols-7 gap-2">
-          {[3, 4, 5, 6, 7, 8, 9].map((num) => (
+        <div className="grid grid-cols-4 gap-3">
+          {[3, 4, 5, 6].map((num) => (
             <button
               key={num}
               onClick={() => setDigits(num)}
               className={`
-                py-2.5 px-3 rounded-xl font-bold transition-all duration-300 text-sm
+                py-3 px-4 rounded-xl font-bold transition-all duration-300 text-base
                 ${digits === num
                   ? 'bg-gradient-to-br from-indigo-600 to-blue-600 dark:from-indigo-500 dark:to-blue-500 text-white shadow-lg shadow-indigo-300/50 dark:shadow-indigo-900/50 scale-105 border-2 border-indigo-400 dark:border-indigo-300'
                   : 'bg-white/80 dark:bg-gray-700/80 text-gray-700 dark:text-gray-200 hover:bg-white dark:hover:bg-gray-700 border-2 border-gray-200 dark:border-gray-600 hover:border-indigo-300 dark:hover:border-indigo-500 hover:shadow-md backdrop-blur-sm'
