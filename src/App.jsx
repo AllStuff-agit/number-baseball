@@ -51,7 +51,7 @@ function App() {
           </p>
         </header>
 
-        <main className="max-w-2xl mx-auto">
+        <main className={!gameStarted ? "max-w-2xl mx-auto" : ""}>
           {!gameStarted ? (
             <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 animate-fade-in transition-colors duration-300">
               <GameSettings onStartGame={handleStartGame} />

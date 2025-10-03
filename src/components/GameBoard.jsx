@@ -35,50 +35,56 @@ function GameBoard({ config, onGoToSettings }) {
   }
 
   return (
-    <div className="space-y-6">
-      {/* 게임 정보 헤더 */}
-      <div className="flex items-center justify-between bg-indigo-50 dark:bg-indigo-900/30 rounded-lg p-4 transition-colors duration-300">
-        <div>
-          <p className="text-sm text-gray-600 dark:text-gray-400 transition-colors duration-300">자릿수</p>
-          <p className="text-2xl font-bold text-indigo-600 dark:text-indigo-400 transition-colors duration-300">{config.digits}자리</p>
+    <div>
+      {/* 데스크톱: 3:2 가로 배치, 모바일: 세로 배치 */}
+      <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 lg:items-start">
+        {/* 왼쪽: 추측 기록 (3/5 = 60%) */}
+        <div className="lg:col-span-3 bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 transition-colors duration-300">
+          <GuessHistory attempts={gameState.attempts} />
         </div>
-        <div>
-          <p className="text-sm text-gray-600 dark:text-gray-400 transition-colors duration-300">시도 횟수</p>
-          <p className="text-2xl font-bold text-indigo-600 dark:text-indigo-400 transition-colors duration-300">{gameState.attempts.length}회</p>
+
+        {/* 오른쪽: 게임 정보 + 입력 폼 (2/5 = 40%) */}
+        <div className="lg:col-span-2 space-y-6">
+          {/* 게임 정보 헤더 */}
+          <div className="flex items-center justify-between bg-indigo-50 dark:bg-indigo-900/30 rounded-lg p-4 transition-colors duration-300">
+            <div>
+              <p className="text-sm text-gray-600 dark:text-gray-400 transition-colors duration-300">자릿수</p>
+              <p className="text-2xl font-bold text-indigo-600 dark:text-indigo-400 transition-colors duration-300">{config.digits}자리</p>
+            </div>
+            <div>
+              <p className="text-sm text-gray-600 dark:text-gray-400 transition-colors duration-300">시도 횟수</p>
+              <p className="text-2xl font-bold text-indigo-600 dark:text-indigo-400 transition-colors duration-300">{gameState.attempts.length}회</p>
+            </div>
+            <button
+              onClick={onGoToSettings}
+              className="px-4 py-2 bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 rounded-lg text-sm font-semibold
+                         hover:bg-gray-100 dark:hover:bg-gray-600 active:scale-95 transition-all duration-300 border-2 border-gray-300 dark:border-gray-600"
+              aria-label="다시 시작하기"
+            >
+              🔄 새 게임
+            </button>
+          </div>
+
+          {/* 입력 폼 */}
+          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 transition-colors duration-300">
+            <GuessInput
+              digits={config.digits}
+              allowLeadingZero={config.allowLeadingZero}
+              onSubmit={handleGuessSubmit}
+              disabled={gameState.isFinished}
+            />
+          </div>
+
+          {/* 힌트 메시지 */}
+          {gameState.attempts.length > 0 && !gameState.isFinished && (
+            <div className="bg-yellow-50 dark:bg-yellow-900/30 border-2 border-yellow-200 dark:border-yellow-700 rounded-lg p-4 text-center transition-colors duration-300">
+              <p className="text-sm text-yellow-800 dark:text-yellow-200 transition-colors duration-300">
+                💡 힌트: 최근 결과를 바탕으로 숫자를 조합해보세요!
+              </p>
+            </div>
+          )}
         </div>
-        <button
-          onClick={onGoToSettings}
-          className="px-4 py-2 bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 rounded-lg text-sm font-semibold
-                     hover:bg-gray-100 dark:hover:bg-gray-600 active:scale-95 transition-all duration-300 border-2 border-gray-300 dark:border-gray-600"
-          aria-label="설정으로 돌아가기"
-        >
-          ⚙️ 설정
-        </button>
       </div>
-
-      {/* 입력 폼 */}
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 transition-colors duration-300">
-        <GuessInput
-          digits={config.digits}
-          allowLeadingZero={config.allowLeadingZero}
-          onSubmit={handleGuessSubmit}
-          disabled={gameState.isFinished}
-        />
-      </div>
-
-      {/* 추측 기록 */}
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 transition-colors duration-300">
-        <GuessHistory attempts={gameState.attempts} />
-      </div>
-
-      {/* 힌트 메시지 */}
-      {gameState.attempts.length > 0 && !gameState.isFinished && (
-        <div className="bg-yellow-50 dark:bg-yellow-900/30 border-2 border-yellow-200 dark:border-yellow-700 rounded-lg p-4 text-center transition-colors duration-300">
-          <p className="text-sm text-yellow-800 dark:text-yellow-200 transition-colors duration-300">
-            💡 힌트: 최근 결과를 바탕으로 숫자를 조합해보세요!
-          </p>
-        </div>
-      )}
 
       {/* 게임 종료 모달 */}
       {gameState.isFinished && (

@@ -23,8 +23,8 @@ function GuessHistory({ attempts }) {
       <h3 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3 transition-colors duration-300">
         추측 기록 ({attempts.length}회)
       </h3>
-      
-      <div className="space-y-2 max-h-96 overflow-y-auto pr-2">
+
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
         {attempts.map((attempt) => {
           const { strike, ball } = attempt.result
           const isNothing = strike === 0 && ball === 0

@@ -4,6 +4,11 @@
  */
 
 /**
+ * 최대 시도 횟수 상수
+ */
+const MAX_ATTEMPTS = 31;
+
+/**
  * @typedef {Object} GameConfig
  * @property {number} digits - 자릿수 (기본: 3)
  * @property {boolean} allowLeadingZero - 0으로 시작 허용 여부 (기본: false)
@@ -247,11 +252,15 @@ export const makeGuess = (state, guess) => {
     timestamp: new Date()
   };
 
+  // 시도 횟수 체크
+  const newAttempts = [...state.attempts, newAttempt];
+  const isMaxAttempts = newAttempts.length >= MAX_ATTEMPTS;
+
   // 불변성을 유지하며 새로운 상태 반환
   return {
     ...state,
-    attempts: [...state.attempts, newAttempt],
-    isFinished: result.isCorrect,
+    attempts: newAttempts,
+    isFinished: result.isCorrect || isMaxAttempts,
     isWon: result.isCorrect
   };
 };

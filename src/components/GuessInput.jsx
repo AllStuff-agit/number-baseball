@@ -83,75 +83,84 @@ function GuessInput({ digits, allowLeadingZero, onSubmit, disabled }) {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
-      <div>
+      <div className="relative">
         <label
           htmlFor="guess-input"
           className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2 transition-colors duration-300"
         >
           숫자를 입력하세요 ({digits}자리)
         </label>
-        <div className="flex gap-2">
-          <input
-            id="guess-input"
-            type="text"
-            inputMode="numeric"
-            value={input}
-            onChange={handleInputChange}
-            disabled={disabled}
-            placeholder={`${'0'.repeat(digits)} 형식`}
-            maxLength={digits}
-            className={`
-              flex-1 px-4 py-3 text-xl font-mono text-center rounded-lg
-              border-2 transition-all duration-300
-              ${error
-                ? 'border-red-500 dark:border-red-400 bg-red-50 dark:bg-red-900/20 focus:ring-red-500'
-                : 'border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:border-indigo-500 dark:focus:border-indigo-400 focus:ring-2 focus:ring-indigo-200 dark:focus:ring-indigo-800'
-              }
-              disabled:bg-gray-100 dark:disabled:bg-gray-800 disabled:cursor-not-allowed
-              focus:outline-none
-            `}
-            aria-label="숫자 추측 입력"
-            aria-invalid={!!error}
-            aria-describedby={error ? 'input-error' : undefined}
-          />
-          <button
-            type="submit"
-            disabled={disabled || !input || !!error}
-            className="px-6 py-3 bg-indigo-600 dark:bg-indigo-500 text-white rounded-lg font-semibold
-                       hover:bg-indigo-700 dark:hover:bg-indigo-600 active:scale-95 transition-all duration-300
-                       disabled:bg-gray-300 dark:disabled:bg-gray-600 disabled:cursor-not-allowed disabled:scale-100
-                       shadow-md hover:shadow-lg"
-            aria-label="제출하기"
-          >
-            제출
-          </button>
+
+        <div>
+          <div className="flex gap-2">
+            <input
+              id="guess-input"
+              type="text"
+              inputMode="numeric"
+              value={input}
+              onChange={handleInputChange}
+              disabled={disabled}
+              placeholder={`${'0'.repeat(digits)} 형식`}
+              maxLength={digits}
+              className={`
+                flex-1 px-4 py-3 text-xl font-mono text-center rounded-lg
+                border-2 transition-all duration-300
+                ${error
+                  ? 'border-red-500 dark:border-red-400 bg-red-50 dark:bg-red-900/20 focus:ring-red-500'
+                  : 'border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:border-indigo-500 dark:focus:border-indigo-400 focus:ring-2 focus:ring-indigo-200 dark:focus:ring-indigo-800'
+                }
+                disabled:bg-gray-100 dark:disabled:bg-gray-800 disabled:cursor-not-allowed
+                focus:outline-none
+              `}
+              aria-label="숫자 추측 입력"
+              aria-invalid={!!error}
+              aria-describedby={error ? 'input-error' : undefined}
+            />
+            <button
+              type="submit"
+              disabled={disabled || !input || !!error}
+              className="px-6 py-3 bg-indigo-600 dark:bg-indigo-500 text-white rounded-lg font-semibold
+                         hover:bg-indigo-700 dark:hover:bg-indigo-600 active:scale-95 transition-all duration-300
+                         disabled:bg-gray-300 dark:disabled:bg-gray-600 disabled:cursor-not-allowed disabled:scale-100
+                         shadow-md hover:shadow-lg"
+              aria-label="제출하기"
+            >
+              제출
+            </button>
+          </div>
+
+          {/* 에러 메시지 */}
+          {error && (
+            <p
+              id="input-error"
+              className="mt-2 text-sm text-red-600 dark:text-red-400 animate-fade-in transition-colors duration-300"
+              role="alert"
+            >
+              ⚠️ {error}
+            </p>
+          )}
+
+          {/* 입력 진행 표시 */}
+          {!error && input && (
+            <div className="mt-2 flex items-center gap-2">
+              <div className="flex-1 bg-gray-200 dark:bg-gray-700 rounded-full h-2 overflow-hidden transition-colors duration-300">
+                <div
+                  className="bg-indigo-600 dark:bg-indigo-500 h-full transition-all duration-300"
+                  style={{ width: `${(input.length / digits) * 100}%` }}
+                />
+              </div>
+              <span className="text-sm text-gray-600 dark:text-gray-400 font-mono transition-colors duration-300">
+                {input.length}/{digits}
+              </span>
+            </div>
+          )}
+
+          {/* 시도 횟수 안내 */}
+          <p className="mt-3 text-xs text-gray-500 dark:text-gray-400 text-center transition-colors duration-300">
+            💡 최대 30번까지 추측할 수 있습니다
+          </p>
         </div>
 
-        {/* 에러 메시지 */}
-        {error && (
-          <p
-            id="input-error"
-            className="mt-2 text-sm text-red-600 dark:text-red-400 animate-fade-in transition-colors duration-300"
-            role="alert"
-          >
-            ⚠️ {error}
-          </p>
-        )}
-
-        {/* 입력 진행 표시 */}
-        {!error && input && (
-          <div className="mt-2 flex items-center gap-2">
-            <div className="flex-1 bg-gray-200 dark:bg-gray-700 rounded-full h-2 overflow-hidden transition-colors duration-300">
-              <div
-                className="bg-indigo-600 dark:bg-indigo-500 h-full transition-all duration-300"
-                style={{ width: `${(input.length / digits) * 100}%` }}
-              />
-            </div>
-            <span className="text-sm text-gray-600 dark:text-gray-400 font-mono transition-colors duration-300">
-              {input.length}/{digits}
-            </span>
-          </div>
-        )}
       </div>
     </form>
   )
