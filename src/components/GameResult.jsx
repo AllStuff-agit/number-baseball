@@ -75,7 +75,7 @@ function GameResult({ isWon, attempts, answer, onRestart, onGoToSettings }) {
                        border border-indigo-400/30 dark:border-indigo-300/30 tracking-wide"
             aria-label="다시 시작하기"
           >
-            다시 시작 🔄
+            다시 시작
           </button>
 
           <button
