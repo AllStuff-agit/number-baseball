@@ -47,10 +47,9 @@ function App() {
                        shadow-lg shadow-gray-200/50 dark:shadow-gray-950/50
                        hover:shadow-xl hover:shadow-gray-300/50 dark:hover:shadow-gray-900/50
                        transition-all duration-300 hover:scale-105
-                       flex items-center gap-2.5 border border-gray-200/50 dark:border-gray-700/50"
+                       border border-gray-200/50 dark:border-gray-700/50"
             aria-label={isDarkMode ? '라이트 모드로 전환' : '다크 모드로 전환'}
           >
-            {isDarkMode ? '🌞' : '🌙'}
             <span className="text-sm font-semibold tracking-wide">
               {isDarkMode ? 'Light Mode' : 'Dark Mode'}
             </span>

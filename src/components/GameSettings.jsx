@@ -117,7 +117,7 @@ function GameSettings({ onStartGame }) {
                    border border-indigo-400/30 dark:border-indigo-300/30 tracking-wide"
         aria-label="게임 시작하기"
       >
-        게임 시작 🎮
+        게임 시작
       </button>
     </div>
   )
