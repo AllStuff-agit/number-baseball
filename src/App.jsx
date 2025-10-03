@@ -29,8 +29,8 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800 transition-colors duration-300">
-      <div className="container mx-auto px-4 py-8">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800 transition-colors duration-300 flex flex-col">
+      <div className="container mx-auto px-4 py-8 flex-1">
         <header className="text-center mb-8 relative">
           {/* 다크 모드 토글 버튼 */}
           <button
@@ -69,11 +69,12 @@ function App() {
           )}
         </main>
 
-        {/* 푸터 */}
-        <footer className="text-center mt-12 text-sm text-gray-500 dark:text-gray-400 transition-colors duration-300">
-          <p>숫자야구 게임 v1.0 | React + Tailwind CSS</p>
-        </footer>
       </div>
+
+      {/* 푸터 */}
+      <footer className="text-center py-4 text-sm text-gray-500 dark:text-gray-400 transition-colors duration-300">
+        <p>숫자야구 게임 v1.0 | React + Tailwind CSS</p>
+      </footer>
     </div>
   )
 }
