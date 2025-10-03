@@ -3,14 +3,14 @@ import { createContext, useContext, useState, useEffect } from 'react'
 const ThemeContext = createContext()
 
 export function ThemeProvider({ children }) {
-  // 초기값: localStorage 또는 시스템 설정
+  // 초기값: localStorage 또는 시스템 설정 (기본값: light 모드)
   const [isDarkMode, setIsDarkMode] = useState(() => {
     const saved = localStorage.getItem('darkMode')
     if (saved !== null) {
       return JSON.parse(saved)
     }
-    // 시스템 설정 확인
-    return window.matchMedia('(prefers-color-scheme: dark)').matches
+    // 시스템 설정 확인 (기본값: false = light 모드)
+    return window.matchMedia('(prefers-color-scheme: dark)').matches || false
   })
 
   // 다크 모드 변경 시 localStorage 저장 및 html 클래스 업데이트
