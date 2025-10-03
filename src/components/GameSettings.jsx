@@ -28,15 +28,15 @@ function GameSettings({ onStartGame }) {
         <ul className="space-y-2 text-sm text-gray-700 dark:text-gray-300 transition-colors duration-300">
           <li className="flex items-start">
             <span className="text-green-600 dark:text-green-400 mr-2 transition-colors duration-300">⚾</span>
-            <span><strong>스트라이크:</strong> 숫자와 위치가 모두 일치</span>
+            <span><strong>Strike:</strong> 숫자와 위치가 모두 일치</span>
           </li>
           <li className="flex items-start">
             <span className="text-orange-500 dark:text-orange-400 mr-2 transition-colors duration-300">⚾</span>
-            <span><strong>볼:</strong> 숫자는 있지만 위치가 다름</span>
+            <span><strong>Ball:</strong> 숫자는 있지만 위치가 다름</span>
           </li>
           <li className="flex items-start">
             <span className="text-gray-400 dark:text-gray-500 mr-2 transition-colors duration-300">⚾</span>
-            <span><strong>낫싱:</strong> 일치하는 숫자 없음</span>
+            <span><strong>Out:</strong> 일치하는 숫자 없음</span>
           </li>
         </ul>
         <p className="mt-3 text-sm text-gray-600 dark:text-gray-400 transition-colors duration-300">
