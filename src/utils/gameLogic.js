@@ -4,9 +4,38 @@
  */
 
 /**
- * 최대 시도 횟수 상수
+ * 자릿수 및 첫자리 0 허용 여부에 따른 최대 시도 횟수 계산
+ * @param {GameConfig} config - 게임 설정
+ * @returns {number} 최대 시도 횟수
+ *
+ * 첫자리 0 불허:
+ * - 3자리: 15회 (648개 조합)
+ * - 4자리: 20회 (4,536개 조합)
+ * - 5자리: 25회 (27,216개 조합)
+ * - 6자리: 30회 (136,080개 조합)
+ *
+ * 첫자리 0 허용: 조합 수가 증가하므로 각각 +5회
+ * - 3자리: 20회 (720개 조합)
+ * - 4자리: 25회 (5,040개 조합)
+ * - 5자리: 30회 (30,240개 조합)
+ * - 6자리: 35회 (151,200개 조합)
  */
-const MAX_ATTEMPTS = 31;
+export const getMaxAttempts = (config) => {
+  const { digits = 3, allowLeadingZero = false } = config;
+
+  // 첫자리 0 불허 시 기본 횟수
+  const baseAttempts = {
+    3: 15,
+    4: 20,
+    5: 25,
+    6: 30
+  };
+
+  const base = baseAttempts[digits] || 15;
+
+  // 첫자리 0 허용 시 +5회 추가
+  return allowLeadingZero ? base + 5 : base;
+};
 
 /**
  * @typedef {Object} GameConfig
@@ -254,7 +283,8 @@ export const makeGuess = (state, guess) => {
 
   // 시도 횟수 체크
   const newAttempts = [...state.attempts, newAttempt];
-  const isMaxAttempts = newAttempts.length >= MAX_ATTEMPTS;
+  const maxAttempts = getMaxAttempts(state.config);
+  const isMaxAttempts = newAttempts.length >= maxAttempts;
 
   // 불변성을 유지하며 새로운 상태 반환
   return {

@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { getMaxAttempts } from '../utils/gameLogic'
 
 /**
  * GuessInput 컴포넌트
@@ -15,6 +16,7 @@ import { useState } from 'react'
  * @param {boolean} props.disabled - 입력 비활성화 여부
  */
 function GuessInput({ digits, allowLeadingZero, onSubmit, disabled }) {
+  const maxAttempts = getMaxAttempts({ digits, allowLeadingZero })
   const [input, setInput] = useState('')
   const [error, setError] = useState('')
 
@@ -162,7 +164,7 @@ function GuessInput({ digits, allowLeadingZero, onSubmit, disabled }) {
           {/* 시도 횟수 안내 */}
           <div className="mt-4 px-4 py-2.5 bg-blue-50/80 dark:bg-blue-950/20 rounded-xl border border-blue-200/50 dark:border-blue-900/30 backdrop-blur-sm">
             <p className="text-xs text-gray-600 dark:text-gray-400 text-center transition-colors duration-300 font-medium">
-              💡 최대 30번까지 추측할 수 있습니다
+              💡 최대 {maxAttempts}번까지 추측할 수 있습니다
             </p>
           </div>
         </div>

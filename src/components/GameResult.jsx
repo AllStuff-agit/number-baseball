@@ -34,9 +34,14 @@ function GameResult({ isWon, attempts, answer, onRestart, onGoToSettings }) {
           <p className="text-lg text-gray-600 dark:text-gray-400 transition-colors duration-300 font-medium">
             {isWon
               ? `${attempts}번 만에 맞추셨습니다!`
-              : '다시 도전해보세요!'
+              : `${attempts}번의 시도 끝에 실패했습니다.`
             }
           </p>
+          {!isWon && (
+            <p className="text-sm text-gray-500 dark:text-gray-400 mt-2 transition-colors duration-300">
+              다시 도전해보세요!
+            </p>
+          )}
         </div>
 
         {/* 정답 표시 */}
