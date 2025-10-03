@@ -75,9 +75,9 @@ function GameResult({ isWon, attempts, answer, onRestart, onGoToSettings }) {
             onClick={onGoToSettings}
             className="w-full bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200 py-3 rounded-lg font-semibold
                        hover:bg-gray-300 dark:hover:bg-gray-600 active:scale-95 transition-all duration-300"
-            aria-label="설정 화면으로 돌아가기"
+            aria-label="새 게임 시작하기"
           >
-            설정으로 돌아가기 ⚙️
+            새 게임 🎮
           </button>
         </div>
       </div>
