@@ -40,26 +40,27 @@ function GameBoard({ config, onGoToSettings }) {
       {/* 데스크톱: 3:2 가로 배치, 모바일: 세로 배치 */}
       <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 lg:items-start">
         {/* 왼쪽: 추측 기록 (3/5 = 60%) */}
-        <div className="lg:col-span-3 bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 transition-colors duration-300">
+        <div className="lg:col-span-3 bg-white/80 dark:bg-gray-800/80 backdrop-blur-md rounded-2xl shadow-xl shadow-gray-200/50 dark:shadow-gray-950/50 p-6 sm:p-8 border border-gray-200/50 dark:border-gray-700/50 transition-colors duration-300">
           <GuessHistory attempts={gameState.attempts} />
         </div>
 
         {/* 오른쪽: 게임 정보 + 입력 폼 (2/5 = 40%) */}
         <div className="lg:col-span-2 space-y-6">
           {/* 게임 정보 헤더 */}
-          <div className="flex items-center justify-between bg-indigo-50 dark:bg-indigo-900/30 rounded-lg p-4 transition-colors duration-300">
+          <div className="flex items-center justify-between bg-gradient-to-br from-indigo-50 to-blue-50 dark:from-indigo-950/30 dark:to-blue-950/30 rounded-2xl p-5 border border-indigo-100 dark:border-indigo-900/30 transition-colors duration-300 shadow-sm backdrop-blur-sm">
             <div>
-              <p className="text-sm text-gray-600 dark:text-gray-400 transition-colors duration-300">자릿수</p>
-              <p className="text-2xl font-bold text-indigo-600 dark:text-indigo-400 transition-colors duration-300">{config.digits}자리</p>
+              <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 transition-colors duration-300 tracking-wider uppercase">자릿수</p>
+              <p className="text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-blue-600 dark:from-indigo-400 dark:to-blue-400 transition-colors duration-300">{config.digits}자리</p>
             </div>
             <div>
-              <p className="text-sm text-gray-600 dark:text-gray-400 transition-colors duration-300">시도 횟수</p>
-              <p className="text-2xl font-bold text-indigo-600 dark:text-indigo-400 transition-colors duration-300">{gameState.attempts.length}회</p>
+              <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 transition-colors duration-300 tracking-wider uppercase">시도 횟수</p>
+              <p className="text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-blue-600 dark:from-indigo-400 dark:to-blue-400 transition-colors duration-300">{gameState.attempts.length}회</p>
             </div>
             <button
               onClick={onGoToSettings}
-              className="px-4 py-2 bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 rounded-lg text-sm font-semibold
-                         hover:bg-gray-100 dark:hover:bg-gray-600 active:scale-95 transition-all duration-300 border-2 border-gray-300 dark:border-gray-600"
+              className="px-4 py-2.5 bg-white/80 dark:bg-gray-700/80 text-gray-700 dark:text-gray-200 rounded-xl text-sm font-bold
+                         hover:bg-white dark:hover:bg-gray-700 active:scale-95 transition-all duration-300 border-2 border-gray-200 dark:border-gray-600
+                         shadow-md hover:shadow-lg backdrop-blur-sm tracking-tight"
               aria-label="다시 시작하기"
             >
               🔄 새 게임
@@ -67,7 +68,7 @@ function GameBoard({ config, onGoToSettings }) {
           </div>
 
           {/* 입력 폼 */}
-          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 transition-colors duration-300">
+          <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-md rounded-2xl shadow-xl shadow-gray-200/50 dark:shadow-gray-950/50 p-6 border border-gray-200/50 dark:border-gray-700/50 transition-colors duration-300">
             <GuessInput
               digits={config.digits}
               allowLeadingZero={config.allowLeadingZero}
@@ -77,7 +78,7 @@ function GameBoard({ config, onGoToSettings }) {
           </div>
 
           {/* 숫자 메모 */}
-          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 transition-colors duration-300">
+          <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-md rounded-2xl shadow-xl shadow-gray-200/50 dark:shadow-gray-950/50 p-6 border border-gray-200/50 dark:border-gray-700/50 transition-colors duration-300">
             <NumberAnalyzer config={config} />
           </div>
         </div>

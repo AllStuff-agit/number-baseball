@@ -82,17 +82,17 @@ function GuessInput({ digits, allowLeadingZero, onSubmit, disabled }) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
+    <form onSubmit={handleSubmit} className="space-y-5">
       <div className="relative">
         <label
           htmlFor="guess-input"
-          className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2 transition-colors duration-300"
+          className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-3 transition-colors duration-300 tracking-tight"
         >
           숫자를 입력하세요 ({digits}자리)
         </label>
 
         <div>
-          <div className="flex gap-2">
+          <div className="flex gap-3">
             <input
               id="guess-input"
               type="text"
@@ -103,14 +103,14 @@ function GuessInput({ digits, allowLeadingZero, onSubmit, disabled }) {
               placeholder={`${'0'.repeat(digits)} 형식`}
               maxLength={digits}
               className={`
-                flex-1 px-4 py-3 text-xl font-mono text-center rounded-lg
-                border-2 transition-all duration-300
+                flex-1 px-5 py-4 text-2xl font-mono text-center rounded-xl font-bold tracking-wider
+                border-2 transition-all duration-300 shadow-inner
                 ${error
-                  ? 'border-red-500 dark:border-red-400 bg-red-50 dark:bg-red-900/20 focus:ring-red-500'
-                  : 'border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:border-indigo-500 dark:focus:border-indigo-400 focus:ring-2 focus:ring-indigo-200 dark:focus:ring-indigo-800'
+                  ? 'border-red-400 dark:border-red-500 bg-red-50/80 dark:bg-red-950/30 focus:ring-2 focus:ring-red-400 dark:focus:ring-red-500 text-red-700 dark:text-red-300'
+                  : 'border-gray-300 dark:border-gray-600 bg-white/90 dark:bg-gray-700/90 text-gray-900 dark:text-gray-100 focus:border-indigo-400 dark:focus:border-indigo-500 focus:ring-2 focus:ring-indigo-300/50 dark:focus:ring-indigo-700/50 backdrop-blur-sm'
                 }
-                disabled:bg-gray-100 dark:disabled:bg-gray-800 disabled:cursor-not-allowed
-                focus:outline-none
+                disabled:bg-gray-100/80 dark:disabled:bg-gray-800/80 disabled:cursor-not-allowed
+                focus:outline-none placeholder:text-gray-300 dark:placeholder:text-gray-600
               `}
               aria-label="숫자 추측 입력"
               aria-invalid={!!error}
@@ -119,10 +119,12 @@ function GuessInput({ digits, allowLeadingZero, onSubmit, disabled }) {
             <button
               type="submit"
               disabled={disabled || !input || !!error}
-              className="px-6 py-3 bg-indigo-600 dark:bg-indigo-500 text-white rounded-lg font-semibold
-                         hover:bg-indigo-700 dark:hover:bg-indigo-600 active:scale-95 transition-all duration-300
-                         disabled:bg-gray-300 dark:disabled:bg-gray-600 disabled:cursor-not-allowed disabled:scale-100
-                         shadow-md hover:shadow-lg"
+              className="px-8 py-4 bg-gradient-to-r from-indigo-600 to-blue-600 dark:from-indigo-500 dark:to-blue-500 text-white rounded-xl font-bold text-base
+                         hover:from-indigo-700 hover:to-blue-700 dark:hover:from-indigo-600 dark:hover:to-blue-600
+                         active:scale-95 transition-all duration-300
+                         disabled:bg-gray-300 dark:disabled:bg-gray-600 disabled:cursor-not-allowed disabled:scale-100 disabled:opacity-50
+                         shadow-lg shadow-indigo-300/50 dark:shadow-indigo-900/50 hover:shadow-xl hover:shadow-indigo-400/60 dark:hover:shadow-indigo-800/60
+                         border border-indigo-400/30 dark:border-indigo-300/30 tracking-wide"
               aria-label="제출하기"
             >
               제출
@@ -131,34 +133,38 @@ function GuessInput({ digits, allowLeadingZero, onSubmit, disabled }) {
 
           {/* 에러 메시지 */}
           {error && (
-            <p
+            <div
               id="input-error"
-              className="mt-2 text-sm text-red-600 dark:text-red-400 animate-fade-in transition-colors duration-300"
+              className="mt-3 px-4 py-3 bg-red-50 dark:bg-red-950/30 border-l-4 border-red-500 dark:border-red-400 rounded-r-xl animate-slide-up backdrop-blur-sm"
               role="alert"
             >
-              ⚠️ {error}
-            </p>
+              <p className="text-sm font-semibold text-red-700 dark:text-red-300 transition-colors duration-300">
+                ⚠️ {error}
+              </p>
+            </div>
           )}
 
           {/* 입력 진행 표시 */}
           {!error && input && (
-            <div className="mt-2 flex items-center gap-2">
-              <div className="flex-1 bg-gray-200 dark:bg-gray-700 rounded-full h-2 overflow-hidden transition-colors duration-300">
+            <div className="mt-3 flex items-center gap-3">
+              <div className="flex-1 bg-gray-200 dark:bg-gray-700 rounded-full h-2.5 overflow-hidden transition-colors duration-300 shadow-inner">
                 <div
-                  className="bg-indigo-600 dark:bg-indigo-500 h-full transition-all duration-300"
+                  className="bg-gradient-to-r from-indigo-500 to-blue-500 dark:from-indigo-400 dark:to-blue-400 h-full transition-all duration-300 shadow-sm"
                   style={{ width: `${(input.length / digits) * 100}%` }}
                 />
               </div>
-              <span className="text-sm text-gray-600 dark:text-gray-400 font-mono transition-colors duration-300">
+              <span className="text-sm text-gray-600 dark:text-gray-400 font-mono font-bold transition-colors duration-300 min-w-[3rem] text-right">
                 {input.length}/{digits}
               </span>
             </div>
           )}
 
           {/* 시도 횟수 안내 */}
-          <p className="mt-3 text-xs text-gray-500 dark:text-gray-400 text-center transition-colors duration-300">
-            💡 최대 30번까지 추측할 수 있습니다
-          </p>
+          <div className="mt-4 px-4 py-2.5 bg-blue-50/80 dark:bg-blue-950/20 rounded-xl border border-blue-200/50 dark:border-blue-900/30 backdrop-blur-sm">
+            <p className="text-xs text-gray-600 dark:text-gray-400 text-center transition-colors duration-300 font-medium">
+              💡 최대 30번까지 추측할 수 있습니다
+            </p>
+          </div>
         </div>
 
       </div>

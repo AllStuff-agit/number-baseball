@@ -29,34 +29,46 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800 transition-colors duration-300 flex flex-col">
-      <div className="container mx-auto px-4 py-8 flex-1">
-        <header className="text-center mb-8 relative">
+    <div className="min-h-screen relative flex flex-col overflow-x-hidden">
+      {/* Background with radial gradient */}
+      <div className="fixed inset-0 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:from-gray-950 dark:via-gray-900 dark:to-gray-800 transition-colors duration-500">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-blue-100/40 via-transparent to-transparent dark:from-blue-950/40"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-indigo-100/40 via-transparent to-transparent dark:from-indigo-950/40"></div>
+      </div>
+
+      <div className="container relative mx-auto px-4 py-8 sm:py-12 flex-1">
+        <header className="text-center mb-12 relative">
           {/* 다크 모드 토글 버튼 */}
           <button
             onClick={toggleTheme}
-            className="absolute right-0 top-0 px-4 py-2 rounded-lg bg-white dark:bg-gray-700
-                       text-gray-700 dark:text-gray-200 shadow-md hover:shadow-lg
-                       transition-all duration-300 hover:scale-105 flex items-center gap-2"
+            className="absolute right-0 top-0 px-5 py-2.5 rounded-xl
+                       bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm
+                       text-gray-700 dark:text-gray-200
+                       shadow-lg shadow-gray-200/50 dark:shadow-gray-950/50
+                       hover:shadow-xl hover:shadow-gray-300/50 dark:hover:shadow-gray-900/50
+                       transition-all duration-300 hover:scale-105
+                       flex items-center gap-2.5 border border-gray-200/50 dark:border-gray-700/50"
             aria-label={isDarkMode ? '라이트 모드로 전환' : '다크 모드로 전환'}
           >
             {isDarkMode ? '🌞' : '🌙'}
-            <span className="text-sm font-semibold">
+            <span className="text-sm font-semibold tracking-wide">
               {isDarkMode ? 'Light Mode' : 'Dark Mode'}
             </span>
           </button>
 
-          <h1 className="text-4xl font-bold text-indigo-900 dark:text-indigo-300 mb-2 transition-colors duration-300">
-            ⚾ 숫자야구 게임
-          </h1>
-          <p className="text-gray-600 dark:text-gray-400 transition-colors duration-300">
-            중복 없는 숫자를 맞춰보세요!
-          </p>
+          <div className="animate-slide-up">
+            <h1 className="text-5xl sm:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-blue-600 dark:from-indigo-400 dark:to-blue-400 mb-3 tracking-tight">
+              ⚾ 숫자야구 게임
+            </h1>
+            <p className="text-lg text-gray-600 dark:text-gray-400 font-medium transition-colors duration-300">
+              중복 없는 숫자를 맞춰보세요!
+            </p>
+          </div>
         </header>
 
         <main className={!gameStarted ? "max-w-2xl mx-auto" : ""}>
           {!gameStarted ? (
-            <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 animate-fade-in transition-colors duration-300">
+            <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-md rounded-2xl shadow-xl shadow-gray-200/50 dark:shadow-gray-950/50 p-8 animate-scale-in border border-gray-200/50 dark:border-gray-700/50 transition-colors duration-300">
               <GameSettings onStartGame={handleStartGame} />
             </div>
           ) : (
@@ -72,8 +84,8 @@ function App() {
       </div>
 
       {/* 푸터 */}
-      <footer className="text-center py-4 text-sm text-gray-500 dark:text-gray-400 transition-colors duration-300">
-        <p>숫자야구 게임 v1.0 | React + Tailwind CSS</p>
+      <footer className="relative text-center py-6 text-sm text-gray-500 dark:text-gray-400 transition-colors duration-300 backdrop-blur-sm">
+        <p className="font-medium">숫자야구 게임 v1.0 | React + Tailwind CSS</p>
       </footer>
     </div>
   )
