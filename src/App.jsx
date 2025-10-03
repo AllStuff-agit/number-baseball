@@ -41,7 +41,7 @@ function App() {
           {/* 다크 모드 토글 버튼 */}
           <button
             onClick={toggleTheme}
-            className="absolute right-0 top-0 px-5 py-2.5 rounded-xl
+            className="absolute right-0 top-0 px-3 py-1.5 sm:px-5 sm:py-2.5 rounded-lg sm:rounded-xl
                        bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm
                        text-gray-700 dark:text-gray-200
                        shadow-lg shadow-gray-200/50 dark:shadow-gray-950/50
@@ -50,16 +50,19 @@ function App() {
                        border border-gray-200/50 dark:border-gray-700/50"
             aria-label={isDarkMode ? '라이트 모드로 전환' : '다크 모드로 전환'}
           >
-            <span className="text-sm font-semibold tracking-wide">
-              {isDarkMode ? 'Light Mode' : 'Dark Mode'}
+            <span className="text-xs sm:text-sm font-semibold tracking-wide">
+              {isDarkMode ? 'Light' : 'Dark'}
             </span>
           </button>
 
           <div className="animate-slide-up">
-            <h1 className="text-5xl sm:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-blue-600 dark:from-indigo-400 dark:to-blue-400 mb-3 tracking-tight">
-              ⚾ 숫자야구 게임
+            <h1 className="text-4xl sm:text-6xl font-black mb-3 tracking-tight flex items-center justify-center gap-2 sm:gap-3">
+              <span className="text-3xl sm:text-5xl">⚾</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-blue-600 dark:from-indigo-400 dark:to-blue-400">
+                숫자야구 게임
+              </span>
             </h1>
-            <p className="text-lg text-gray-600 dark:text-gray-400 font-medium transition-colors duration-300">
+            <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 font-medium transition-colors duration-300">
               중복 없는 숫자를 맞춰보세요!
             </p>
           </div>

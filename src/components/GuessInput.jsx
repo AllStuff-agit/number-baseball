@@ -94,7 +94,7 @@ function GuessInput({ digits, allowLeadingZero, onSubmit, disabled }) {
         </label>
 
         <div>
-          <div className="flex gap-3">
+          <div className="flex flex-col sm:flex-row gap-3">
             <input
               id="guess-input"
               type="text"
@@ -105,7 +105,7 @@ function GuessInput({ digits, allowLeadingZero, onSubmit, disabled }) {
               placeholder={`${'0'.repeat(digits)} 형식`}
               maxLength={digits}
               className={`
-                flex-1 px-5 py-4 text-2xl font-mono text-center rounded-xl font-bold tracking-wider
+                flex-1 px-4 sm:px-5 py-3 sm:py-4 text-xl sm:text-2xl font-mono text-center rounded-xl font-bold tracking-wider
                 border-2 transition-all duration-300 shadow-inner
                 ${error
                   ? 'border-red-400 dark:border-red-500 bg-red-50/80 dark:bg-red-950/30 focus:ring-2 focus:ring-red-400 dark:focus:ring-red-500 text-red-700 dark:text-red-300'
@@ -121,7 +121,7 @@ function GuessInput({ digits, allowLeadingZero, onSubmit, disabled }) {
             <button
               type="submit"
               disabled={disabled || !input || !!error}
-              className="px-8 py-4 bg-gradient-to-r from-indigo-600 to-blue-600 dark:from-indigo-500 dark:to-blue-500 text-white rounded-xl font-bold text-base
+              className="px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-indigo-600 to-blue-600 dark:from-indigo-500 dark:to-blue-500 text-white rounded-xl font-bold text-sm sm:text-base
                          hover:from-indigo-700 hover:to-blue-700 dark:hover:from-indigo-600 dark:hover:to-blue-600
                          active:scale-95 transition-all duration-300
                          disabled:bg-gray-300 dark:disabled:bg-gray-600 disabled:cursor-not-allowed disabled:scale-100 disabled:opacity-50
