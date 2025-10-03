@@ -84,11 +84,6 @@ function App() {
         </main>
 
       </div>
-
-      {/* 푸터 */}
-      <footer className="relative text-center py-6 text-sm text-gray-500 dark:text-gray-400 transition-colors duration-300 backdrop-blur-sm">
-        <p className="font-medium">숫자야구 게임 v1.0 | React + Tailwind CSS</p>
-      </footer>
     </div>
   )
 }
