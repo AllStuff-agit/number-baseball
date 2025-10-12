@@ -43,6 +43,9 @@ jobs:
       # 4. Vite 프로젝트 빌드
       - name: Build
         run: npm run build
+        env:
+          VITE_SUPABASE_URL: ${{ vars.VITE_SUPABASE_URL }}
+          VITE_SUPABASE_ANON_KEY: ${{ vars.VITE_SUPABASE_ANON_KEY }}
 
       # 5. GitHub Pages 설정
       - name: Setup Pages
