@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import GameSettings from './components/GameSettings'
 import GameBoard from './components/GameBoard'
+import Records from './components/Records'
 import { useTheme } from './contexts/ThemeContext.jsx'
 
 /**
@@ -10,9 +11,11 @@ import { useTheme } from './contexts/ThemeContext.jsx'
  * 1. 게임 설정 (자릿수 선택, 첫자리 0 허용 옵션)
  * 2. 게임 진행 (추측 입력 및 결과 확인)
  * 3. 게임 종료 (성공 결과, 재시작/설정 돌아가기)
+ * 4. 기록 보기 (자릿수별 TOP 10)
  */
 function App() {
   const [gameStarted, setGameStarted] = useState(false)
+  const [showRecords, setShowRecords] = useState(false)
   const [gameConfig, setGameConfig] = useState(null)
   const { isDarkMode, toggleTheme } = useTheme()
 
@@ -20,12 +23,25 @@ function App() {
   const handleStartGame = (config) => {
     setGameConfig(config)
     setGameStarted(true)
+    setShowRecords(false)
   }
 
   // 설정 화면으로 돌아가기
   const handleGoToSettings = () => {
     setGameStarted(false)
     setGameConfig(null)
+    setShowRecords(false)
+  }
+
+  // 기록 보기
+  const handleShowRecords = () => {
+    setShowRecords(true)
+    setGameStarted(false)
+  }
+
+  // 기록에서 돌아가기
+  const handleBackFromRecords = () => {
+    setShowRecords(false)
   }
 
   return (
@@ -68,10 +84,15 @@ function App() {
           </div>
         </header>
 
-        <main className={!gameStarted ? "max-w-2xl mx-auto" : ""}>
-          {!gameStarted ? (
+        <main className={!gameStarted && !showRecords ? "max-w-2xl mx-auto" : ""}>
+          {showRecords ? (
+            <Records onBack={handleBackFromRecords} />
+          ) : !gameStarted ? (
             <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-md rounded-2xl shadow-xl shadow-gray-200/50 dark:shadow-gray-950/50 p-8 animate-scale-in border border-gray-200/50 dark:border-gray-700/50 transition-colors duration-300">
-              <GameSettings onStartGame={handleStartGame} />
+              <GameSettings
+                onStartGame={handleStartGame}
+                onShowRecords={handleShowRecords}
+              />
             </div>
           ) : (
             <div className="animate-fade-in">

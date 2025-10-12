@@ -8,11 +8,13 @@ import { useState } from 'react'
  * - 첫자리 0 허용 옵션
  * - 게임 규칙 설명
  * - 게임 시작 버튼
+ * - 기록 보기 버튼
  *
  * @param {Object} props
  * @param {Function} props.onStartGame - 게임 시작 콜백 ({digits, allowLeadingZero} 전달)
+ * @param {Function} props.onShowRecords - 기록 보기 콜백
  */
-function GameSettings({ onStartGame }) {
+function GameSettings({ onStartGame, onShowRecords }) {
   const [digits, setDigits] = useState(3)
   const [allowLeadingZero, setAllowLeadingZero] = useState(false)
 
@@ -107,18 +109,34 @@ function GameSettings({ onStartGame }) {
         </button>
       </div>
 
-      {/* 게임 시작 버튼 */}
-      <button
-        onClick={handleStart}
-        className="w-full bg-gradient-to-r from-indigo-600 to-blue-600 dark:from-indigo-500 dark:to-blue-500 text-white py-3.5 rounded-2xl font-bold text-base
-                   hover:from-indigo-700 hover:to-blue-700 dark:hover:from-indigo-600 dark:hover:to-blue-600
-                   active:scale-[0.98] transition-all duration-300
-                   shadow-xl shadow-indigo-300/50 dark:shadow-indigo-900/50 hover:shadow-2xl hover:shadow-indigo-400/60 dark:hover:shadow-indigo-800/60
-                   border border-indigo-400/30 dark:border-indigo-300/30 tracking-wide"
-        aria-label="게임 시작하기"
-      >
-        게임 시작
-      </button>
+      {/* 버튼 그룹 */}
+      <div className="space-y-3">
+        {/* 게임 시작 버튼 */}
+        <button
+          onClick={handleStart}
+          className="w-full bg-gradient-to-r from-indigo-600 to-blue-600 dark:from-indigo-500 dark:to-blue-500 text-white py-3.5 rounded-2xl font-bold text-base
+                     hover:from-indigo-700 hover:to-blue-700 dark:hover:from-indigo-600 dark:hover:to-blue-600
+                     active:scale-[0.98] transition-all duration-300
+                     shadow-xl shadow-indigo-300/50 dark:shadow-indigo-900/50 hover:shadow-2xl hover:shadow-indigo-400/60 dark:hover:shadow-indigo-800/60
+                     border border-indigo-400/30 dark:border-indigo-300/30 tracking-wide"
+          aria-label="게임 시작하기"
+        >
+          게임 시작
+        </button>
+
+        {/* 기록 보기 버튼 */}
+        <button
+          onClick={onShowRecords}
+          className="w-full bg-gradient-to-r from-amber-600 to-orange-600 dark:from-amber-500 dark:to-orange-500 text-white py-3.5 rounded-2xl font-bold text-base
+                     hover:from-amber-700 hover:to-orange-700 dark:hover:from-amber-600 dark:hover:to-orange-600
+                     active:scale-[0.98] transition-all duration-300
+                     shadow-xl shadow-amber-300/50 dark:shadow-amber-900/50 hover:shadow-2xl hover:shadow-amber-400/60 dark:hover:shadow-amber-800/60
+                     border border-amber-400/30 dark:border-amber-300/30 tracking-wide"
+          aria-label="기록 보기"
+        >
+          🏆 기록 보기
+        </button>
+      </div>
     </div>
   )
 }
