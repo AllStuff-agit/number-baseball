@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import GuessInput from './GuessInput'
 import GuessHistory from './GuessHistory'
 import GameResult from './GameResult'
@@ -20,6 +20,16 @@ import { initializeGame, makeGuess, getMaxAttempts } from '../utils/gameLogic'
 function GameBoard({ config, onGoToSettings }) {
   const [gameState, setGameState] = useState(() => initializeGame(config))
   const maxAttempts = getMaxAttempts(config)
+  const startTimeRef = useRef(Date.now())
+  const [playTime, setPlayTime] = useState(0)
+
+  // 게임 상태가 변경될 때 플레이 시간 계산
+  useEffect(() => {
+    if (gameState.isFinished) {
+      const duration = Math.floor((Date.now() - startTimeRef.current) / 1000)
+      setPlayTime(duration)
+    }
+  }, [gameState.isFinished])
 
   // 추측 제출 처리
   const handleGuessSubmit = (guess) => {
@@ -34,6 +44,8 @@ function GameBoard({ config, onGoToSettings }) {
   // 게임 재시작 (같은 설정)
   const handleRestart = () => {
     setGameState(initializeGame(config))
+    startTimeRef.current = Date.now()
+    setPlayTime(0)
   }
 
   return (
@@ -112,6 +124,8 @@ function GameBoard({ config, onGoToSettings }) {
           isWon={gameState.isWon}
           attempts={gameState.attempts.length}
           answer={gameState.secret}
+          playTime={playTime}
+          digits={config.digits}
           onRestart={handleRestart}
           onGoToSettings={onGoToSettings}
         />
