@@ -26,7 +26,7 @@ function GuessHistory({ attempts }) {
         추측 기록 ({attempts.length}회)
       </h3>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
+      <div className="grid grid-cols-1 gap-3">
         {attempts.map((attempt) => {
           const { strike, ball } = attempt.result
           const isNothing = strike === 0 && ball === 0
