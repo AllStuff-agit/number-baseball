@@ -75,13 +75,13 @@ function Records({ onBack }) {
         <header className="text-center mb-8 relative flex-shrink-0">
           <button
             onClick={onBack}
-            className="absolute left-0 top-0 px-4 py-2.5 sm:px-5 sm:py-3 rounded-xl
+            className="absolute left-0 top-0 px-2 py-1.5 sm:px-5 sm:py-3 rounded-lg sm:rounded-xl
                        bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm
                        text-gray-700 dark:text-gray-200
                        shadow-lg shadow-gray-200/50 dark:shadow-gray-950/50
                        hover:shadow-xl hover:shadow-gray-300/50 dark:hover:shadow-gray-900/50
                        transition-all duration-300 hover:scale-105
-                       border border-gray-200/50 dark:border-gray-700/50 font-bold text-base sm:text-lg"
+                       border border-gray-200/50 dark:border-gray-700/50 font-bold text-[10px] sm:text-lg"
             aria-label="뒤로가기"
           >
             ← 돌아가기
