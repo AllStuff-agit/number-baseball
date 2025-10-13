@@ -94,7 +94,7 @@ function GuessInput({ digits, allowLeadingZero, onSubmit, disabled }) {
         </label>
 
         <div>
-          <div className="flex flex-col sm:flex-row gap-3">
+          <div className="flex flex-col xl:flex-row gap-3">
             <input
               id="guess-input"
               type="text"
