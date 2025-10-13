@@ -45,67 +45,72 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen relative flex flex-col overflow-x-hidden">
-      {/* Background with radial gradient */}
-      <div className="fixed inset-0 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:from-gray-950 dark:via-gray-900 dark:to-gray-800 transition-colors duration-500">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-blue-100/40 via-transparent to-transparent dark:from-blue-950/40"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-indigo-100/40 via-transparent to-transparent dark:from-indigo-950/40"></div>
-      </div>
-
-      <div className="container relative mx-auto px-4 py-8 sm:py-12 flex-1">
-        <header className="text-center mb-12 relative">
-          {/* 다크 모드 토글 버튼 */}
-          <button
-            onClick={toggleTheme}
-            className="absolute right-0 top-0 px-3 py-1.5 sm:px-5 sm:py-2.5 rounded-lg sm:rounded-xl
-                       bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm
-                       text-gray-700 dark:text-gray-200
-                       shadow-lg shadow-gray-200/50 dark:shadow-gray-950/50
-                       hover:shadow-xl hover:shadow-gray-300/50 dark:hover:shadow-gray-900/50
-                       transition-all duration-300 hover:scale-105
-                       border border-gray-200/50 dark:border-gray-700/50"
-            aria-label={isDarkMode ? '라이트 모드로 전환' : '다크 모드로 전환'}
-          >
-            <span className="text-xs sm:text-sm font-semibold tracking-wide">
-              {isDarkMode ? 'Light' : 'Dark'}
-            </span>
-          </button>
-
-          <div className="animate-slide-up">
-            <h1 className="text-4xl sm:text-6xl font-black mb-3 tracking-tight flex items-center justify-center gap-2 sm:gap-3">
-              <span className="text-3xl sm:text-5xl">⚾</span>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-blue-600 dark:from-indigo-400 dark:to-blue-400">
-                숫자야구 게임
-              </span>
-            </h1>
-            <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 font-medium transition-colors duration-300">
-              중복 없는 숫자를 맞춰보세요!
-            </p>
+    <>
+      {showRecords ? (
+        // Records는 독립된 전체 페이지로 렌더링
+        <Records onBack={handleBackFromRecords} />
+      ) : (
+        <div className="min-h-screen relative flex flex-col overflow-x-hidden">
+          {/* Background with radial gradient */}
+          <div className="fixed inset-0 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:from-gray-950 dark:via-gray-900 dark:to-gray-800 transition-colors duration-500">
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-blue-100/40 via-transparent to-transparent dark:from-blue-950/40"></div>
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-indigo-100/40 via-transparent to-transparent dark:from-indigo-950/40"></div>
           </div>
-        </header>
 
-        <main className={!gameStarted && !showRecords ? "max-w-2xl mx-auto" : ""}>
-          {showRecords ? (
-            <Records onBack={handleBackFromRecords} />
-          ) : !gameStarted ? (
-            <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-md rounded-2xl shadow-xl shadow-gray-200/50 dark:shadow-gray-950/50 p-8 animate-scale-in border border-gray-200/50 dark:border-gray-700/50 transition-colors duration-300">
-              <GameSettings
-                onStartGame={handleStartGame}
-                onShowRecords={handleShowRecords}
-              />
-            </div>
-          ) : (
-            <div className="animate-fade-in">
-              <GameBoard
-                config={gameConfig}
-                onGoToSettings={handleGoToSettings}
-              />
-            </div>
-          )}
-        </main>
+          <div className="container relative mx-auto px-4 py-8 sm:py-12 flex-1">
+            <header className="text-center mb-12 relative">
+              {/* 다크 모드 토글 버튼 */}
+              <button
+                onClick={toggleTheme}
+                className="absolute right-0 top-0 px-3 py-1.5 sm:px-5 sm:py-2.5 rounded-lg sm:rounded-xl
+                           bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm
+                           text-gray-700 dark:text-gray-200
+                           shadow-lg shadow-gray-200/50 dark:shadow-gray-950/50
+                           hover:shadow-xl hover:shadow-gray-300/50 dark:hover:shadow-gray-900/50
+                           transition-all duration-300 hover:scale-105
+                           border border-gray-200/50 dark:border-gray-700/50"
+                aria-label={isDarkMode ? '라이트 모드로 전환' : '다크 모드로 전환'}
+              >
+                <span className="text-xs sm:text-sm font-semibold tracking-wide">
+                  {isDarkMode ? 'Light' : 'Dark'}
+                </span>
+              </button>
 
-      </div>
-    </div>
+              <div className="animate-slide-up">
+                <h1 className="text-4xl sm:text-6xl font-black mb-3 tracking-tight flex items-center justify-center gap-2 sm:gap-3">
+                  <span className="text-3xl sm:text-5xl">⚾</span>
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-blue-600 dark:from-indigo-400 dark:to-blue-400">
+                    숫자야구 게임
+                  </span>
+                </h1>
+                <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 font-medium transition-colors duration-300">
+                  중복 없는 숫자를 맞춰보세요!
+                </p>
+              </div>
+            </header>
+
+            <main className={!gameStarted ? "max-w-2xl mx-auto" : ""}>
+              {!gameStarted ? (
+                <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-md rounded-2xl shadow-xl shadow-gray-200/50 dark:shadow-gray-950/50 p-8 animate-scale-in border border-gray-200/50 dark:border-gray-700/50 transition-colors duration-300">
+                  <GameSettings
+                    onStartGame={handleStartGame}
+                    onShowRecords={handleShowRecords}
+                  />
+                </div>
+              ) : (
+                <div className="animate-fade-in">
+                  <GameBoard
+                    config={gameConfig}
+                    onGoToSettings={handleGoToSettings}
+                  />
+                </div>
+              )}
+            </main>
+
+          </div>
+        </div>
+      )}
+    </>
   )
 }
 
